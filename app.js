@@ -14,6 +14,8 @@ app.get('/api/v1/cat/:id', (req, res) => {
   res.send(cats[id]);
 });
 
+app.use('/public', express.static('public'));
+
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
@@ -23,7 +25,7 @@ function makeCat(id) {
   return {
     cat_id: id,
     name: 'Pulla',
-    birthdate: '24.10.2018',
+    birthdate: '2018-11-05',
     weight: 5.0,
     owner: 'Pertsa',
     image: 'https://placecats.com/300/200',
