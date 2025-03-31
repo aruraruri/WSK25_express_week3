@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 const cats = [];
 app.get('/api/v1/cat/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
-  res.send(cats[id]);
+  res.json(cats[id]);
 });
 
 app.use('/public', express.static('public'));
