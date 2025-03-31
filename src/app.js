@@ -1,34 +1,22 @@
 import express from 'express';
+import api from './api/index.js';
+
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   res.send('Welcome to my REST API!');
 });
 
 // god save the cats
-const cats = [];
-app.get('/api/v1/cat/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  res.json(cats[id]);
+app.get('/', (req, res) => {
+  res.send('Weclome to RetS ApI :--))');
 });
 
 app.use('/public', express.static('public'));
 
-// make new cat
-function makeCat(id) {
-  return {
-    cat_id: id,
-    name: 'Pulla',
-    birthdate: '2018-11-05',
-    weight: 5.0,
-    owner: 'Pertsa',
-    image: 'https://placecats.com/300/200',
-  };
-}
-
-// create some cats
-for (let i = 0; i < 100; i++) {
-  cats.push(makeCat(i));
-}
+app.use('/api/v1', api);
 
 export default app;
