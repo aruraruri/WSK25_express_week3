@@ -1,42 +1,34 @@
-const userItems = [
-  {
-    user_id: 3609,
-    name: 'John Doe',
-    username: 'johndoe',
-    email: 'john@metropolia.fi',
-    role: 'user',
-    password: 'password',
-  },
-  {
-    user_id: 3609,
-    name: 'Liisa',
-    username: 'liisa',
-    email: 'liisa@metropolia.fi',
-    role: 'user',
-    password: 'password',
-  },
-];
+import promisePool from '../../utils/database.js';
 
-const listAllUsers = () => {
-  return userItems;
+const listAllUsers = async () => {
+  const [rows] = await promisePool.query('SELECT * FROM wsk_users');
+  console.log('rows', rows);
+  return rows;
 };
 
-const findUserById = (id) => {
-  return userItems.find((item) => item.user_id == id);
+const findUserById = async (id) => {
+  const [rows] = await promisePool.execute(
+    'SELECT * FROM wsk_users WHERE user_id = ?',
+    [id]
+  );
+  console.log('rows', rows);
+  if (rows.length === 0) {
+    return false;
+  }
+  return rows[0];
 };
 
-const addUser = (user) => {
+const addUser = async (user) => {
   const {user_name, weight, owner, filename, birthdate} = user;
-  const newId = userItems[0].user_id + 1;
-  userItems.unshift({
-    user_id: newId,
-    user_name,
-    weight,
-    owner,
-    filename,
-    birthdate,
-  });
-  return {user_id: newId};
+  const sql = `INSERT INTO wsk_users (user_name, weight, owner, filename, birthdate)
+               VALUES (?, ?, ?, ?, ?)`;
+  const params = [user_name, weight, owner, filename, birthdate];
+  const rows = await promisePool.execute(sql, params);
+  console.log('rows', rows);
+  if (rows[0].affectedRows === 0) {
+    return false;
+  }
+  return {user_id: rows[0].insertId};
 };
 
 export {listAllUsers, findUserById, addUser};

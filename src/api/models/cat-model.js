@@ -3,14 +3,15 @@
 import promisePool from '../../utils/database.js';
 
 const listAllCats = async () => {
-  const [rows] = await promisePool.query('SELECT * FROM cats');
+  // taulukko destructuring, array comes in and one array item is gotten as 'rows'
+  const [rows] = await promisePool.query('SELECT * FROM wsk_cats');
   console.log('rows', rows);
   return rows;
 };
 
 const findCatById = async (id) => {
   const [rows] = await promisePool.execute(
-    'SELECT * FROM cats WHERE cats_id = ?',
+    'SELECT * FROM wsk_cats WHERE cats_id = ?',
     [id]
   );
   console.log('rows', rows);
@@ -22,7 +23,7 @@ const findCatById = async (id) => {
 
 const addCat = async (cat) => {
   const {cat_name, weight, owner, filename, birthdate} = cat;
-  const sql = `INSERT INTO cats (cat_name, weight, owner, filename, birthdate)
+  const sql = `INSERT INTO wsk_cats (cat_name, weight, owner, filename, birthdate)
                VALUES (?, ?, ?, ?, ?)`;
   const params = [cat_name, weight, owner, filename, birthdate];
   const rows = await promisePool.execute(sql, params);
@@ -34,7 +35,7 @@ const addCat = async (cat) => {
 };
 
 const modifyCat = async (cat, id) => {
-  const sql = promisePool.format(`UPDATE cats SET ? WHERE cat_id = ?`, [
+  const sql = promisePool.format(`UPDATE wsk_cats SET ? WHERE cat_id = ?`, [
     cat,
     id,
   ]);
