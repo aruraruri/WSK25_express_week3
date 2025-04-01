@@ -7,9 +7,17 @@ export async function createThumbnail(req, res, next) {
     return;
   }
 
+  let extension = '.jpg';
+  if (req.file.mimetype === 'image/jpg') {
+    extension = '.jpg';
+  }
+  if (req.file.mimetype === 'image/png') {
+    extension = '.png';
+  }
+
   await sharp(req.file.path)
     .resize({width: 100, height: 100})
-    .toFile(`${req.file.path}_thumb`);
+    .toFile(`${req.file.path}_thumb${extension}`);
 
   next();
 }
