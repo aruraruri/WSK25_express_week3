@@ -1,5 +1,8 @@
 
 POST http://localhost:3000/api/v1/cats
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MCwibmFtZSI6Im15cnR0aSIsInVzZXJuYW1lIjoibXlydHRpIiwiZW1haWwiOiJteXJ0dGlAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDM1OTE2NDUsImV4cCI6MTc0MzY3ODA0NX0.6c0ygyaraE9FzICpDuZzyYsjm64RFCSiuPSeW2JtHfQ
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -16,6 +19,7 @@ Content-Type: image/jpeg
 
 < ./recycle-bin.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
 
 
 ### testing root get

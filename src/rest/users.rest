@@ -13,3 +13,6 @@ GET http://localhost:3000/api/v1/users
 
 ### test delete user by id
 DELETE http://localhost:3000/api/v1/users/3609
+
+### test users get by ID
+GET http://localhost:3000/api/v1/users/1
