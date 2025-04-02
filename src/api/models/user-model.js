@@ -31,4 +31,8 @@ const addUser = async (user) => {
   return {user_id: rows[0].insertId};
 };
 
+const login = () => {
+  const sql = `SELECT * FROM wsk_users WHERE `;
+};
+
 export {listAllUsers, findUserById, addUser};
