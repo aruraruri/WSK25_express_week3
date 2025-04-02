@@ -2,10 +2,10 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "name": "erk",
-    "username": "derk",
-    "password": "f$2b$10$2PLQsxYKFGqj.n5jmk4VmeKycaPb/Z8XDJSxgfdQTGyND6CHt1gZ.",
-    "email": "erk@gmail.com"
+    "name": "myrtti",
+    "username": "myrtti",
+    "password": "aurinko",
+    "email": "myrtti@gmail.com"
 }
 
 ### test users get
