@@ -11,7 +11,7 @@ const listAllCats = async () => {
 
 const findCatById = async (id) => {
   const [rows] = await promisePool.execute(
-    'SELECT * FROM wsk_cats WHERE cats_id = ?',
+    'SELECT * FROM wsk_cats WHERE cat_id = ?',
     [id]
   );
   console.log('rows', rows);

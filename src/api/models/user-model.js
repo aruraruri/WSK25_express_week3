@@ -19,10 +19,10 @@ const findUserById = async (id) => {
 };
 
 const addUser = async (user) => {
-  const {user_name, weight, owner, filename, birthdate} = user;
-  const sql = `INSERT INTO wsk_users (user_name, weight, owner, filename, birthdate)
-               VALUES (?, ?, ?, ?, ?)`;
-  const params = [user_name, weight, owner, filename, birthdate];
+  const {name, username, email, password} = user;
+  const sql = `INSERT INTO wsk_users (name, username, email, password)
+               VALUES (?, ?, ?, ?)`;
+  const params = [name, username, email, password];
   const rows = await promisePool.execute(sql, params);
   console.log('rows', rows);
   if (rows[0].affectedRows === 0) {

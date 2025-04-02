@@ -17,7 +17,7 @@ const postUser = async (req, res) => {
   const result = await addUser(req.body);
   if (result.cat_id) {
     res.status(201);
-    res.json({message: 'New cat added.', result});
+    res.json({message: 'New user added.', result});
   } else {
     res.sendStatus(400);
   }
