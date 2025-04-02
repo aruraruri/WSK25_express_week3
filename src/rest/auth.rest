@@ -16,3 +16,10 @@ Content-Type: application/json
     "password": "shoite"
 }
 
+### Get my user info TEMPLATE
+GET http://localhost:3000/api/v1/auth/me
+Authorization: Bearer <put-your-token-from-login-response-here>
+
+### Get my user info
+GET http://localhost:3000/api/v1/auth/me
+Authorization: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozOCwibmFtZSI6ImVyayIsInVzZXJuYW1lIjoiZGVyayIsImVtYWlsIjoiZXJrQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzNTkxMjE1LCJleHAiOjE3NDM2Nzc2MTV9.3qBrBppKK7yXhRkFeMCjEKsGlOhk1gUEa7_hHOy7-Us>

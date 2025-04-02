@@ -34,3 +34,12 @@ export const authUser = async (req, res) => {
 
   res.json({user: userWithNoPassword, token});
 };
+
+export const getMe = async (req, res) => {
+  console.log('getMe', res.locals.user);
+  if (res.locals.user) {
+    res.json({message: 'token ok', user: res.locals.user});
+  } else {
+    res.sendStatus(401);
+  }
+};

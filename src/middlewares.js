@@ -37,6 +37,7 @@ const authenticateToken = (req, res, next) => {
     next();
   } catch (err) {
     res.status(403).send({message: 'invalid token'});
+    console.log(err);
   }
 };
 
