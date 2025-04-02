@@ -39,6 +39,7 @@ const login = async (user) => {
   if (rows.length === 0) {
     return false;
   }
+  console.log(rows[0]);
   return rows[0];
 };
 
