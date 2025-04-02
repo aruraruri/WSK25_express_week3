@@ -31,8 +31,15 @@ const addUser = async (user) => {
   return {user_id: rows[0].insertId};
 };
 
-const login = () => {
-  const sql = `SELECT * FROM wsk_users WHERE `;
+const login = async (user) => {
+  const sql = `SELECT * FROM wsk_users WHERE username = ?`;
+
+  const [rows] = await promisePool.execute(sql, [user]);
+  console.log('rows', rows);
+  if (rows.length === 0) {
+    return false;
+  }
+  return rows[0];
 };
 
-export {listAllUsers, findUserById, addUser};
+export {listAllUsers, findUserById, addUser, login};
