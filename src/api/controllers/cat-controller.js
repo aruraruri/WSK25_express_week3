@@ -31,7 +31,9 @@ const postCat = async (req, res) => {
 
 const putCat = async (req, res) => {
   // not implemented in this example, this is future homework
-  const result = await modifyCat(req.body);
+  console.log('Request body:', req.body); // <-- Debug log
+  console.log('Request params:', req.params); // <-- Debug log
+  const result = await modifyCat(req.body, req.params.id);
   if (result.cat_id) {
     res.status(201);
     res.json({message: 'Cat modified.', result});

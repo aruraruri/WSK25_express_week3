@@ -7,11 +7,7 @@ import {
   deleteCat,
 } from '../controllers/cat-controller.js';
 import multer from 'multer';
-import {
-  authenticateToken,
-  catOwnerCheck,
-  createThumbnail,
-} from '../../middlewares.js';
+import {authenticateToken, createThumbnail} from '../../middlewares.js';
 
 const catRouter = express.Router();
 
@@ -25,7 +21,8 @@ catRouter
 catRouter
   .route('/:id')
   .get(getCatById)
-  .put(authenticateToken, catOwnerCheck, putCat)
+  .put(authenticateToken, putCat)
+  .patch(authenticateToken, putCat)
   .delete(deleteCat);
 
 export default catRouter;

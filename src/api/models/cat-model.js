@@ -35,18 +35,17 @@ const addCat = async (cat) => {
 };
 
 const modifyCat = async (cat, id) => {
-  // format used to construct a whole sql statement with params, good for logging
-  const sql = promisePool.format(`UPDATE wsk_cats SET ? WHERE cat_id = ?`, [
-    cat,
-    id,
-  ]);
-  console.log(sql);
-  const rows = await promisePool.execute(sql);
-  console.log('rows', rows);
-  if (rows[0].affectedRows === 0) {
+  try {
+    const sql = promisePool.format(`UPDATE wsk_cats SET ? WHERE cat_id = ?`, [
+      cat,
+      id,
+    ]);
+    const [rows] = await promisePool.execute(sql);
+    return rows.affectedRows > 0 ? {cat_id: id} : false;
+  } catch (error) {
+    console.error('Error modifying cat:', error);
     return false;
   }
-  return {message: 'success'};
 };
 
 const removeCat = async (id) => {
