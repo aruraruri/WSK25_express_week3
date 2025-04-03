@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import promisePool from './utils/database.js';
 
 async function createThumbnail(req, res, next) {
   console.log('todo: tee kuvakäsittely', req.file);
@@ -41,4 +42,19 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-export {authenticateToken, createThumbnail};
+async function catOwnerCheck(req, res, next) {
+  console.log(req);
+  const sql = promisePool.format(`SELECT *  FROM wsk_cats WHERE cat_id = ?`, [
+    req.cat_name,
+  ]);
+  console.log(sql);
+  const rows = await promisePool.execute(sql);
+  console.log('rows', rows);
+  if (rows[0].owner === req.id) {
+    console.log('matching ids');
+  }
+
+  next();
+}
+
+export {authenticateToken, createThumbnail, catOwnerCheck};
